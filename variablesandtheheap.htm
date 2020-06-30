@@ -1,0 +1,521 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app58.us.archive.org';v.server_ms=1032;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=R56vIgLu" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=nWgLpXRB" charset="utf-8"></script>
+<script type="text/javascript">
+if (window._WBWombatInit) {
+  wbinfo = {}
+  wbinfo.url = "http://hapyli.webs.com:80/variablesandtheheap.htm";
+  wbinfo.timestamp = "20120711135113";
+  wbinfo.request_ts = "20120711135113";
+  wbinfo.prefix = "http://web.archive.org/web/";
+  wbinfo.mod = "if_";
+  wbinfo.is_framed = false;
+  wbinfo.is_live = false;
+  wbinfo.coll = "web";
+  wbinfo.proxy_magic = "";
+  wbinfo.static_prefix = "/_static/";
+  wbinfo.enable_auto_fetch = true;
+  wbinfo.auto_fetch_worker_prefix = "http://web.archive.org/web/";
+  wbinfo.wombat_ts = "20120711135113";
+  wbinfo.wombat_sec = "1342014673";
+  wbinfo.wombat_scheme = "https";
+  wbinfo.wombat_host = "hapyli.webs.com:80";
+  wbinfo.ignore_prefixes = ["/__wb/",
+                            "/_static/",
+                            "/web/",
+                            "http://analytics.archive.org/",
+                            "https://analytics.archive.org/",
+                            "//analytics.archive.org/",
+                            "http://archive.org/",
+                            "https://archive.org/",
+                            "//archive.org/",
+                            "http://faq.web.archive.org/",
+                            "http://web.archive.org/",
+                            "https://web.archive.org/"
+                            ];
+  wbinfo.wombat_opts = {};
+  window._WBWombatInit(wbinfo);
+}
+__wm.init("http://web.archive.org/web");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=HyR5oymJ" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+        <title>Variables and the Heap - The HaPyLi Programming Language</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<!-- master box -->
+	<link rel="canonical" href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/variablesandtheheap.htm"/>
+
+<meta property="og:site_name" content="The HaPyLi Programming Language"/>
+<meta property="og:title" content="Variables and the Heap"/>
+
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/web/20120711135113cs_/http://static.websimages.com/static/global/theme/css/pluggables.css"/>
+<script type="text/javascript" src="http://web.archive.org/web/20120711135113js_/http://static.websimages.com/static/global/js/webs/usersites/webs_common.js"></script>
+<script type="text/javascript" src="http://web.archive.org/web/20120711135113js_/http://static.websimages.com/static/global/js/webs/websover.min.js"></script><link id="templatebase" rel="stylesheet" type="text/css" media="screen" href="http://web.archive.org/web/20120711135113cs_/http://static.websimages.com/static/global/css/templatebase.css">
+<link id="fw_template_file" rel="stylesheet" type="text/css" href="http://web.archive.org/web/20120711135113cs_/http://hapyli.webs.com/.design.css?r=789" media="screen">
+<script>if(typeof(webs)==='undefined'){webs={page:{id:178591123}}}else if(typeof(webs.page)==='undefined'){webs.page={id:178591123}}else if(typeof(webs.page.id)==='undefinded'){webs.page.id=178591123}</script>
+<!-- Start ClickyPlugin (none) -->
+
+<!-- End ClickyPlugin (none) -->
+
+<meta name="fw:category" content="4">
+
+	<link rel="stylesheet" type="text/css" href="http://web.archive.org/web/20120711135113cs_/http://images.freewebs.com/Members/Generationz/Standard/PrintCSS/print.css" media="print">
+</head>
+<body class="hasOneColumn hasSidebar navtype-Top translate-en"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  /*min-width:800px !important;*/
+}
+</style>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="wm-ipp-inside">
+  <div style="position:relative;">
+    <div id="wm-logo" style="float:left;width:130px;padding-top:10px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="/_static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+    </div>
+    <div class="r" style="float:right;">
+      <div id="wm-btns" style="text-align:right;height:25px;">
+                  <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#"
+	     title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php"
+             title="Sign In"
+             id="wm-sign-in"
+          >
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        	<a href="http://faq.web.archive.org/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+	<a id="wm-tb-close" href="#close" onclick="__wm.h(event);return false;" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share">
+          <a href="/web/20120711135113/http://web.archive.org/screenshot/http://hapyli.webs.com/variablesandtheheap.htm"
+             id="wm-screenshot"
+             title="screenshot">
+            <span class="wm-icon-screen-shot"></span>
+          </a>
+	<a id="wm-share-facebook" href="#" data-url="http://web.archive.org/web/20120711135113/http://hapyli.webs.com:80/variablesandtheheap.htm" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+	<a id="wm-share-twitter" href="#" data-url="http://web.archive.org/web/20120711135113/http://hapyli.webs.com:80/variablesandtheheap.htm" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+    </div>
+    <table class="c" style="">
+      <tbody>
+	<tr>
+	  <td class="u" colspan="2">
+	    <form target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://hapyli.webs.com/variablesandtheheap.htm" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20120711135113" /><input type="submit" value="Go" /></form>
+	  </td>
+	  <td class="n" rowspan="2" style="width:110px;">
+	    <table>
+	      <tbody>
+		<!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+		<tr class="m">
+		  <td class="b" nowrap="nowrap"><a href="http://web.archive.org/web/20110219155019/http://hapyli.webs.com:80/variablesandtheheap.htm" title="19 Feb 2011"><strong>Feb</strong></a></td>
+		  <td class="c" id="displayMonthEl" title="You are here: 13:51:13 Jul 11, 2012">JUL</td>
+		  <td class="f" nowrap="nowrap">Aug</td>
+		</tr>
+		<!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+		<tr class="d">
+		  <td class="b" nowrap="nowrap"><a href="http://web.archive.org/web/20110219155019/http://hapyli.webs.com:80/variablesandtheheap.htm" title="15:50:19 Feb 19, 2011"><img src="/_static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a></td>
+		  <td class="c" id="displayDayEl" style="width:34px;font-size:24px;white-space:nowrap;" title="You are here: 13:51:13 Jul 11, 2012">11</td>
+		  <td class="f" nowrap="nowrap"><img src="/_static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0" /></td>
+		</tr>
+		<!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+		<tr class="y">
+		  <td class="b" nowrap="nowrap"><a href="http://web.archive.org/web/20110219155019/http://hapyli.webs.com:80/variablesandtheheap.htm" title="19 Feb 2011"><strong>2011</strong></a></td>
+		  <td class="c" id="displayYearEl" title="You are here: 13:51:13 Jul 11, 2012">2012</td>
+		  <td class="f" nowrap="nowrap">2013</td>
+		</tr>
+	      </tbody>
+	    </table>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="s">
+	    	    <div id="wm-nav-captures">
+	      	      <a class="t" href="/web/20120711135113*/http://hapyli.webs.com/variablesandtheheap.htm" title="See a list of every capture for this URL">2 captures</a>
+	      <div class="r" title="Timespan for captures of this URL">19 Feb 2011 - 11 Jul 2012</div>
+	      </div>
+	  </td>
+	  <td class="k">
+	    <a href="" id="wm-graph-anchor">
+	      <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+		<canvas id="wm-sparkline-canvas" width="625" height="27" border="0"></canvas>
+	      </div>
+	    </a>
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+    <div style="position:absolute;bottom:0;right:2px;text-align:right;">
+      <a id="wm-expand" class="wm-btn wm-closed" href="#expand" onclick="__wm.ex(event);return false;"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span style="font-size:80%">About this capture</span></a>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+                    <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+            <div style="display:inline-block;vertical-align:top;width:50%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls);"></span>
+		Organization: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/alexacrawls)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/alexacrawls" target="_new"><span class="wm-title">Alexa Crawls</span></a></div>
+		<div style="max-height:75px;overflow:hidden;position:relative;">
+	  <div style="position:absolute;top:0;left:0;width:100%;height:75px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 90%,rgba(255,255,255,255) 100%);"></div>
+	  Starting in 1996, <a href="http://www.alexa.com/">Alexa Internet</a> has been donating their crawl data to the Internet Archive.  Flowing in every day, these data are added to the <a href="http://web.archive.org/">Wayback Machine</a> after an embargo period.
+	</div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="donato" style="position:relative;width:100%;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;transpiled=0&amp;referer=http%3A//web.archive.org/web/20120711135113/http%3A//hapyli.webs.com/variablesandtheheap.htm"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><script type="text/javascript">
+__wm.bt(625,27,25,2,"web","http://hapyli.webs.com/variablesandtheheap.htm","20120711135113",1996,"/_static/",["/_static/css/banner-styles.css?v=HyR5oymJ","/_static/css/iconochive.css?v=qtvMKcIJ"]);
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<!-- Start ClickyPlugin (none) -->
+
+<!-- End ClickyPlugin (none) -->
+
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="http://web.archive.org/web/20120711135113js_/http://partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-4763110844767107");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+GA_googleAddAttr('cat', '00');
+GA_googleAddAttr('wl', '4');
+</script>
+<script type="text/javascript">
+  GA_googleAddSlot("ca-pub-4763110844767107", "user_bbtemplate_300x250");
+</script>
+<script type="text/javascript">
+  GA_googleFetchAds();
+</script>
+<!-- END OF TAG FOR head SECTION --><script type="text/javascript" src="http://web.archive.org/web/20120711135113js_/http://static.websimages.com/JS/fw.js"></script>
+<!--
+{NavHeaderFormat}
+<li class="fw-navheader">{NavHeader}</li>
+{/NavHeaderFormat}
+
+
+
+-->
+
+<div id="fw-container">
+	<div id="fw-head">
+		<h1 id="fw-title"><a id="fw-titlelink" href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/">The HaPyLi Programming Language</a></h1>
+		<h2 id="fw-smalltitle"></h2>
+		<div id="logo-div" class="fw-logo"></div>
+	</div>
+
+	<div id="fw-blockContainer">
+		<div id="fw-mainnavwrap">
+			<div id="fw-nav-menu">
+				<ul class="fw-nav-level-0">
+					<li><a class="section fw-class-fd491768bbe8b2f208d6e5d82758228a" href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/">Home</a></li>
+<li><a class="section fw-class-d1327102c625731683ab8438b00a8baf" href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/apps/forums/">Forums</a></li>
+<li><a class="section fw-class-ad6af1ec00b43ea5f44730cbc1610daa" href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/examples.htm">Examples</a></li>
+
+				</ul>
+			</div>
+		</div>
+
+
+		<div id="fw-bigcontain">
+			
+
+
+			<div id="fw-mainColumn">
+				<!-- ParagraphStart 578215274 -->
+			<div class="fw-paragraph">
+				<div class="fw-paragraphtop"></div>
+				<h3 class="fw-title"><a name="578215274"></a><!-- ParagraphTitleStart --><b><font size="5">Section 3: Variables and the Heap</font></b> <!-- ParagraphTitleEnd --></h3>
+				<div class="fw-text"><!-- ParagraphBodyStart --><p>&#160; </p><!-- ParagraphBodyEnd --></div>
+				<div class="fw-paragraphbottom"></div>
+			</div>
+			<!-- ParagraphEnd 578215274 --><!-- ParagraphStart 578215992 -->
+			<div class="fw-paragraph">
+				<div class="fw-paragraphtop"></div>
+				<h3 class="fw-title"><a name="578215992"></a><!-- ParagraphTitleStart -->Global Variables <!-- ParagraphTitleEnd --></h3>
+				<div class="fw-text"><!-- ParagraphBodyStart --><p><font size="2">Function parameters and local variables defined in let-forms are allocated on the Whitespace stack. Whitespace, however, also provides access to random-access heap memory. HaPyLi uses this heap for strings and global variables.<hr>
+<pre>
+    <a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/globals.hpl">File: globals.hpl</a>
+    
+        import "stdlib/base.hpl"
+
+        var *A = 123
+        var *B = (1 2 3)
+        var *C = "ABC"
+        var *D = ('A' 'B' 'C' '\0')
+        var *E(10)
+
+        def print-A () =
+            (do (print-number (ref *A)) (print-char '\n'))
+            
+        def print-B () = 
+            (do (print-number (ref *B 0)) (print-char ' ')
+                (print-number (ref *B 1)) (print-char ' ')
+                (print-number (ref *B 2)) (print-char '\n'))
+                
+        def print-C () = (do (print-string *C) (print-char '\n'))
+
+        def print-D () = (do (print-string *D) (print-char '\n'))
+
+        def fill (*array size fromIndex value) =
+            (if (== fromIndex size)
+                0
+                (do (set *array fromIndex value)
+                    (fill *array size (+ fromIndex 1) value)))
+            
+        def print-array (*array size fromIndex) = 
+            (if (== fromIndex size)
+                (print-char '\n')
+                (do (print-number (ref *array fromIndex))
+                    (print-char ' ')
+                    (print-array *array size (+ fromIndex 1))))
+            
+        def main () = 
+            (do (print-A)
+                (print-B)
+                (print-C)
+                (print-D)
+                (fill *E 10 0 5)
+                (print-array *E 10 0))        
+
+</pre>        
+<hr></font></p><p><font size="2">The example above illustrates every type of global variable you can define in HaPyLi and how to read and write to them. The '*' on each variable name isn't anything special - any identifier can contain this character. It is a naming convention I use to distinguish pointers from other kinds of variables. All global variables are pointers to data in the heap. To read from these variables, you must use the &#34;ref&#34; function defined in the HaPyLi Standard Library. Likewise, to write to these variables you must use the &#34;set&#34; function.<br/><br/>&#34;ref&#34; accepts a pointer to an array and an index and returns the data stored at that index within the array. (ref *X 0) is equivalent to (ref *X).<br/><br/>Likewise, &#34;set&#34; accepts a pointer to an array, an index, and a value, and writes that value to the array at the index. (set *array 0 value) is equivalent to (set *variable value).<br/><br/>You must be extremely careful, however, because HaPyLi doesn't provide any bounds checking when reading from or writing to arrays. Writing beyond the end of an array may actually write to a different variable instead. Reading beyond the end of an array, from an address that's never been written to, could actually crash the Whitespace interpreter.</font></p><font size="2">&#160;</font><!-- ParagraphBodyEnd --></div>
+				<div class="fw-paragraphbottom"></div>
+			</div>
+			<!-- ParagraphEnd 578215992 --><!-- ParagraphStart 578216878 -->
+			<div class="fw-paragraph">
+				<div class="fw-paragraphtop"></div>
+				<h3 class="fw-title"><a name="578216878"></a><!-- ParagraphTitleStart -->Local Variables As Pointers <!-- ParagraphTitleEnd --></h3>
+				<div class="fw-text"><!-- ParagraphBodyStart --><p><font size="2">The HaPyLi Standard Library defines the &#34;alloc&#34; function which is similar to the &#34;malloc&#34; function in C. It accepts a single parameter indicating the size of the array to allocate and returns a pointer to that array.</font></p><p><font size="2">While C provides both &#34;malloc&#34; and &#34;free&#34;, there is no equivalent to &#34;free&#34; in HaPyLi. Sorry, I never wrote one. The HaPyLi Standard Library is unfinished. You can write your own, however, if it's so important to you. I'll explain everything you need to know in order to do that in the next section. For now, here are examples of &#34;alloc&#34;.<hr>
+<pre>
+    <a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/alloc.hpl">File: alloc.hpl</a>
+    
+        import "stdlib/base.hpl"
+
+        var *global = (1 2 3 4 5)
+
+        def copy (*dest *source count) = 
+            (if (== count 0)
+                0
+                (do (set *dest (ref *source))
+                    (copy (+ *dest 1) (+ *source 1) (- count 1))))
+                
+
+        def print-array (*array size fromIndex) = 
+            (if (== fromIndex size)
+                (print-char '\n')
+                (do (print-number (ref *array fromIndex))
+                    (print-char ' ')
+                    (print-array *array size (+ fromIndex 1))))
+                    
+        def main () = 
+            let
+                *local = (alloc 5)
+            in
+                (do 
+                    (print-array *global 5 0)
+                    (copy *local *global 5)
+                    (print-array *local 5 0))
+</pre>        
+<hr> </font></p><p><font size="2">&#160;Remember that HaPyLi is a typeless language. All variables are ultimately integers. In the example above, *global and *local evaluate to the address in heap memory where their data is stored. You can add to and subtract from these pointers as if they were ordinary integers - which is exactly how the &#34;copy&#34; function works.</font></p><p><font size="2">The example below further illustrates this point: <hr>
+<pre>
+    <a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/pointers.hpl">File: pointers.hpl</a>
+    
+        import "stdlib/base.hpl"
+
+        var *A = (1 2 3 4 5)
+
+        def print-array (*array size fromIndex) = 
+            (if (== fromIndex size)
+                (print-char '\n')
+                (do (print-number (ref *array fromIndex))
+                    (print-char ' ')
+                    (print-array *array size (+ fromIndex 1))))
+
+        def main () = 
+            let
+                *B = (+ *A 2)
+            in 
+                (do (print-array *A 5 0)
+                    (print-array *B 3 0))
+</pre>        
+<hr></font></p><p><font size="2">&#160;The local variable *B is just like any other array. It points to the beginning of its data in memory. It doesn't matter that *B points to some of the same data as *A.</font></p><!-- ParagraphBodyEnd --></div>
+				<div class="fw-paragraphbottom"></div>
+			</div>
+			<!-- ParagraphEnd 578216878 -->
+			</div>
+
+		</div>
+
+		<div id="fw-sidebar">
+
+<!--
+			  
+-->
+
+
+
+			<div id="fw-sidebarbegin"></div>
+			
+  			<div id="boxad">
+					<script type="text/javascript">
+  GA_googleFillSlot("user_bbtemplate_300x250");
+</script>
+			</div>
+			
+			<div class="fw-paragraph">
+				<div class="fw-paragraphtop"></div>
+				<h3 class="fw-title">Tutorial</h3>
+				<div class="fw-text"><p><a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/functions.htm">1. Functions</a></p><p><a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/expressions.htm">2. Expressions</a></p><p><a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/variablesandtheheap.htm">3. Variables and the Heap</a></p><p><a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/embeddingwhitespace.htm">4. Embedding Whitespace</a></p><p>&#160;</p></div>
+				<div class="fw-paragraphbottom"></div>
+			</div>
+			
+			<div class="fw-paragraph">
+				<div class="fw-paragraphtop"></div>
+				<h3 class="fw-title"><a href="http://web.archive.org/web/20120711135113/http://hapyli.webs.com/apps/forums/">Recent Forum Posts</a></h3>
+				<div class="fw-text">
+
+	
+		<i>No recent posts</i>
+	
+
+</div>
+				<div class="fw-paragraphbottom"></div>
+			</div>
+			
+			<div id="fw-sidebarend"></div>
+		</div>
+
+		<div class="clears"></div>
+	</div>
+    <div class="clears"></div>
+</div>
+
+<div id="fw-footer">
+	<p id="fw-foottext" class="fw-footertext">Copyright �2010</p>
+	<p><script>
+<!-- var udndom = (document.location.host.indexOf('.webs.com') > 0) ? '.webs.com' : 'none'; -->
+_udn = "none";
+</script>
+
+<!-- Google Website Optimizer Control Script -->
+<script>
+function utmx_section(){}function utmx(){}
+(function(){var k='0521688706',d=document,l=d.location,c=d.cookie;function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
+d.write('<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'+'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+'" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
+</script>
+<!-- End of Google Website Optimizer Control Script -->
+
+<script>utmx_section("Personal Footer")</script>
+<script type="text/javascript">	
+function webURL() {
+window.location = 'http://web.archive.org/web/20120711135113/http://www.webs.com/?referer=wftr-' + location.host + '&utm_source=product&utm_medium=userSite&utm_term=free&utm_content=personal&utm_campaign=footer'
+}
+</script>
+
+<p style="float: left; font-size: 11px; text-align: left;">
+<a onclick="webURL(); return false;" href="http://web.archive.org/web/20120711135113/http://www.webs.com/?utm_source=product&amp;utm_medium=userSite&amp;utm_term=free&amp;utm_content=personal&amp;utm_campaign=footer" value="Create a Free Website at Webs.com" title="Create a Free Website" class="fwftr-input-big fwftr-button">
+<span>Create a Free Website</span>
+</a>
+</p>
+
+</noscript>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "http://web.archive.org/web/20120711135113/https://ssl." : "http://web.archive.org/web/20120711135113/http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+if(typeof(_gaq) == 'undefined') {
+try {
+var pageTracker = _gat._getTracker("UA-230305-2");
+pageTracker._setDomainName("none");
+pageTracker._setAllowHash(false);
+pageTracker._setAllowLinker(true);
+pageTracker._trackPageview();
+} catch(err) {}
+}
+</script>
+
+<!-- Google Website Optimizer Tracking Script -->
+<script type="text/javascript">
+if(typeof(_gat)!='object')document.write('<sc'+'ript src="http'+(document.location.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com/ga.js"></sc'+'ript>')
+</script>
+<script type="text/javascript">
+try {
+var gwoTracker=_gat._getTracker("UA-230305-28");
+gwoTracker._setDomainName("none");
+gwoTracker._trackPageview("/0521688706/test");
+}catch(err){}
+</script>
+<!-- End of Google Website Optimizer Tracking Script -->
+<script>var _nwls=[];if(window.jQuery&&window.jQuery.find){_nwls=jQuery.find(".fw_link_newWindow");}else{if(document.getElementsByClassName){_nwls=document.getElementsByClassName("fw_link_newWindow");}else{if(document.querySelectorAll){_nwls=document.querySelectorAll(".fw_link_newWindow");}else{document.write('<scr'+'ipt src="http://web.archive.org/web/20120711135113/http://static.websimages.com/static/global/js/sizzle/sizzle.min.js"><\/scr'+'ipt>');if(window.Sizzle){_nwls=Sizzle(".fw_link_newWindow");}}}}var numlinks=_nwls.length;for(var i=0;i<numlinks;i++){_nwls[i].target="_blank";}</script></p>
+</div>
+
+<!-- Start ClickyPlugin (none) -->
+
+<!-- End ClickyPlugin (none) -->
+<!-- --><script type="text/javascript" src="http://web.archive.org/web/20120711135113js_/http://static.websimages.com/static/global/js/webs/usersites/escort.js"></script><script type="text/javascript">if(typeof(urchinTracker)=='function'){_uacct="UA-230305-2";_udn="none";_uff=false;urchinTracker();}</script>
+<!--[if IE 6]>
+<script type="text/javascript" src="http://images.webs.com/static/global/js/webs/usersites/ie6subnav.js"></script>
+<![endif]-->
+</body>
+</html>
+<!-- webssite903 --><!--
+     FILE ARCHIVED ON 13:51:13 Jul 11, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:32:28 Jun 30, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  PetaboxLoader3.datanode: 719.005 (4)
+  LoadShardBlock: 573.473 (3)
+  PetaboxLoader3.resolve: 85.308
+  RedisCDXSource: 9.319
+  exclusion.robots: 0.235
+  load_resource: 422.194
+  exclusion.robots.policy: 0.226
+  captures_list: 598.294
+  esindex: 0.01
+  CDXLines.iter: 12.823 (3)
+-->
